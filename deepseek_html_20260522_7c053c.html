@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Участникам | Биржа решений - ДЗЗ, БАС и ИИ для экологии</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1A2C2E;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #1F6E5C;
+            --primary-light: #e0f0ec;
+            --primary-dark: #0f4c3f;
+            --gray-bg: #F9FAFB;
+            --gray-border: #E5E9F0;
+            --text-muted: #5A6E73;
+            --shadow-sm: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 12px 28px rgba(0,0,0,0.05);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #1F6E5C 0%, #0F4C3F 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #0F2C2A;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .section {
+            padding: 64px 0;
+            border-bottom: 1px solid var(--gray-border);
+        }
+        .section-light {
+            background-color: var(--gray-bg);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-light);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--primary);
+            background: transparent;
+            padding: 10px 24px;
+            border-radius: 48px;
+            font-weight: 600;
+            color: var(--primary);
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 64px 0 48px;
+            background: linear-gradient(145deg, #FFFFFF 0%, #F8FDFB 100%);
+        }
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        /* Исправленный блок с кнопками — теперь отступы через gap */
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+        .hero-buttons .btn-outline {
+            margin-left: 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 24px;
+        }
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: 0.2s;
+            border: 1px solid var(--gray-border);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .timeline-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: white;
+            border-radius: 20px;
+            padding: 18px 24px;
+            box-shadow: var(--shadow-sm);
+            border-left: 5px solid var(--primary);
+        }
+        .time-badge {
+            font-weight: 700;
+            background: var(--primary-light);
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            min-width: 110px;
+            text-align: center;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        @media (max-width: 800px) {
+            .two-columns { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .section { padding: 48px 0; }
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+        .info-list li {
+            margin-bottom: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+        }
+        .info-list i {
+            color: var(--primary);
+            width: 24px;
+            margin-top: 3px;
+        }
+
+        .rule-step {
+            background: var(--primary-light);
+            border-radius: 40px;
+            padding: 4px 12px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .criteria-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .criteria-name {
+            width: 170px;
+            font-weight: 600;
+        }
+        .progress-bar {
+            flex: 2;
+            height: 10px;
+            background: #E2E8F0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            border-radius: 10px;
+        }
+
+        footer {
+            background: #F2F5F4;
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .chat-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            transition: 0.2s;
+        }
+        .chat-link:hover {
+            border-bottom-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="container hero-content">
+        <div class="badge"><i class="fas fa-satellite-dish"></i> ИТ-Форум БРИКС+ШОС · 18 июня 2026</div>
+        <h1>Как участвовать в Бирже решений</h1>
+        <p style="font-size: 1.2rem; margin: 16px 0 20px; color: #2C4B47;">Экспертная сессия «Применение ДЗЗ, БАС и ИИ в природоохранной деятельности»</p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div><i class="fas fa-calendar-alt"></i> 18 июня 2026 · 10:00 – 14:00</div>
+            <div><i class="fas fa-map-marker-alt"></i> КТЦ «Югра-Классик», зал «Трансформер»</div>
+            <div><i class="fas fa-users"></i> Очное участие + онлайн-трансляция</div>
+        </div>
+        <!-- Исправленный блок с кнопками: убран margin-left, добавлен flex с gap -->
+        <div class="hero-buttons">
+            <a href="#schedule" class="btn-outline"><i class="fas fa-clock"></i> Расписание и порядок</a>
+            <a href="#mechanics" class="btn-outline"><i class="fas fa-arrows-spin"></i> Механика биржи</a>
+        </div>
+    </div>
+</div>
+
+<!-- Ключевая идея для участников (акцент на практических задачах) -->
+<div class="container section fade-up">
+    <h2>Главное - решение реальных задач заказчиков</h2>
+    <div class="card-grid">
+        <div class="card"><i class="fas fa-chalkboard-user" style="font-size: 2rem; color: var(--primary); margin-bottom: 12px; display: block;"></i> <strong>Заказчики</strong> (нефтегаз, органы власти) - вы заранее сформулировали свои практические задачи. На сессии оцените, как технологии ДЗЗ, БАС и ИИ могут их решить.</div>
+        <div class="card"><i class="fas fa-microchip" style="font-size: 2rem; color: var(--primary); margin-bottom: 12px; display: block;"></i> <strong>Вендоры</strong> (разработчики) - подготовили решения под конкретные кейсы заказчиков. Презентуете их вживую, получите обратную связь и контакты для пилотов.</div>
+        <div class="card"><i class="fas fa-handshake" style="font-size: 2rem; color: var(--primary); margin-bottom: 12px; display: block;"></i> <strong>Результат</strong> - рейтинг лучших решений под отраслевые задачи, реестр проверенных технологий и старт пилотных проектов.</div>
+    </div>
+</div>
+
+<!-- РАСПИСАНИЕ -->
+<div class="section-light" id="schedule">
+    <div class="container">
+        <h2>⏱ Программа сессии (4 часа)</h2>
+        <div class="timeline">
+            <div class="timeline-item"><div class="time-badge">10:00 – 10:05</div><div><strong>Открытие</strong> - приветственное слово, представление формата и задач.</div></div>
+            <div class="timeline-item"><div class="time-badge">10:05 – 10:20</div><div><strong>Лекция модератора</strong> «Природа 2076: кто будет охранять землю?» - футуристический взгляд на экомониторинг.</div></div>
+            <div class="timeline-item"><div class="time-badge">10:20 – 12:05</div><div><strong>Биржа решений (ротация)</strong> - 10 столов вендоров, 10 групп заказчиков. Каждая группа получает маршрутный лист. <br>Формат стола: 5 минут презентация решения под вашу задачу + 5 минут вопросы заказчиков + 2 минуты на переход.</div></div>
+            <div class="timeline-item"><div class="time-badge">12:05 – 12:40</div><div><strong>Кофе-брейк + обработка оценок</strong> - неформальное общение, вендоры готовятся к публичной защите.</div></div>
+            <div class="timeline-item"><div class="time-badge">12:40 – 13:30</div><div><strong>Публичная экспертиза (все 10 вендоров)</strong> - каждый разработчик на сцене: 4 минуты презентация + 1 минута ответы на вопросы жюри и зала.</div></div>
+            <div class="timeline-item"><div class="time-badge">13:30 – 13:45</div><div><strong>Взгляд заказчика</strong> - представители групп заказчиков делятся впечатлениями: какие решения наиболее готовы к внедрению.</div></div>
+            <div class="timeline-item"><div class="time-badge">13:45 – 14:00</div><div><strong>Награждение победителей и закрытие</strong> - объявление 4 номинаций, вручение дипломов.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- МЕХАНИКА БИРЖИ РЕШЕНИЙ (адаптировано под задачи) -->
+<div class="container section" id="mechanics">
+    <h2>⚙️ Как проходит «Биржа решений» (ротационная сессия)</h2>
+    <div class="two-columns">
+        <div>
+            <div class="rule-step"><i class="fas fa-users"></i> Для заказчиков</div>
+            <ul class="info-list">
+                <li><i class="fas fa-list-ol"></i> Вы разделены на 10 групп по 3–4 человека. Каждая группа получает <strong>маршрутный лист</strong> с порядком посещения столов вендоров.</li>
+                <li><i class="fas fa-hourglass-half"></i> На каждый стол - 12 минут: 5 мин презентация решения, 5 мин ваши вопросы, 2 мин переход.</li>
+                <li><i class="fas fa-pen"></i> После знакомства со всеми 10 решениями заполните <strong>«Паспорт участника»</strong> - оцените каждый проект по 5 критериям (точность решения задачи, скорость внедрения, экономический эффект, интегрируемость, масштабируемость).</li>
+                <li><i class="fas fa-trophy"></i> Ваши оценки формируют 50% итогового балла вендора.</li>
+            </ul>
+        </div>
+        <div>
+            <div class="rule-step"><i class="fas fa-laptop-code"></i> Для вендоров (разработчиков)</div>
+            <ul class="info-list">
+                <li><i class="fas fa-chalkboard"></i> У вас стационарный стол с экраном. Вы демонстрируете решение под практические задачи, присланные заказчиками до форума.</li>
+                <li><i class="fas fa-comments"></i> К вам приходят последовательно 10 групп заказчиков. 5 минут на презентацию + 5 минут на ответы на вопросы.</li>
+                <li><i class="fas fa-qrcode"></i> Собирайте контакты заказчиков для пост-взаимодействия.</li>
+                <li><i class="fas fa-chart-line"></i> После кофе-брейка - публичная защита на сцене: 4 минуты на ключевые результаты + 1 минута ответы жюри.</li>
+                <li><i class="fas fa-medal"></i> Оценка = 50% от заказчиков + 50% от экспертного жюри.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="card" style="margin-top: 28px; background: var(--primary-light); border: none;">
+        <i class="fas fa-volume-up"></i> <strong>Важно: звуковой сигнал и визуальный таймер</strong> - строгое соблюдение регламента. Координаторы помогают с навигацией.
+    </div>
+</div>
+
+<!-- Критерии оценки (без упоминания «реальных данных») -->
+<div class="section-light fade-up">
+    <div class="container">
+        <h2>Критерии оценки решений</h2>
+        <p style="margin-bottom: 20px;">Заказчики и члены жюри оценивают каждый проект по пяти критериям. Веса:</p>
+        <div class="criteria-list">
+            <div class="criteria-row"><span class="criteria-name">Точность решения задачи</span><div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div><span>30%</span></div>
+            <div class="criteria-row"><span class="criteria-name">Скорость внедрения / обработки</span><div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div><span>20%</span></div>
+            <div class="criteria-row"><span class="criteria-name">Экономический эффект (ROI)</span><div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div><span>20%</span></div>
+            <div class="criteria-row"><span class="criteria-name">Интегрируемость в ИТ-ландшафт</span><div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div><span>15%</span></div>
+            <div class="criteria-row"><span class="criteria-name">Масштабируемость / тиражируемость</span><div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div><span>15%</span></div>
+        </div>
+        <div class="badge" style="margin-top: 20px;"><i class="fas fa-calculator"></i> Итоговый балл = (средняя оценка заказчиков) × 0,5 + (средняя оценка жюри) × 0,5. Максимум 100 баллов.</div>
+    </div>
+</div>
+
+<!-- Номинации и награды -->
+<div class="container section fade-up">
+    <h2>🏆 Номинации и награды</h2>
+    <div class="card-grid">
+        <div class="card"><i class="fas fa-crown"></i> <strong>Лучшее комплексное решение</strong><br>Гран-при по сумме баллов. Диплом, топ-3 на платформе, медийное сопровождение.</div>
+        <div class="card"><i class="fas fa-oil-can"></i> <strong>Лучшее для нефтегаза</strong><br>Наивысшая оценка от представителей ТЭК в жюри. Рекомендация к пилотному проекту.</div>
+        <div class="card"><i class="fas fa-building"></i> <strong>Лучшее для органов власти</strong><br>Оценка от Природнадзора и Депнедр Югры. Рекомендация к внедрению в госсекторе.</div>
+        <div class="card"><i class="fas fa-heart"></i> <strong>Приз зрительских симпатий</strong><br>Голосование всех участников (очных и онлайн) через мобильное приложение. Диплом и бонус.</div>
+    </div>
+    <div style="margin-top: 36px; background: white; border-radius: 28px; padding: 24px; text-align: center; box-shadow: var(--shadow-sm);">
+        <i class="fas fa-certificate" style="font-size: 2rem; color: var(--primary);"></i>
+        <p><strong>Каждый вендор - участник</strong> получает именной сертификат, видеозапись выступления, размещение в реестре решений и доступ к контактам заказчиков.</p>
+    </div>
+</div>
+
+<!-- Действия до и после -->
+<div class="section-light fade-up">
+    <div class="container">
+        <h2>До и после форума</h2>
+        <div class="two-columns">
+            <div>
+                <h3><i class="fas fa-calendar-week"></i> Перед мероприятием</h3>
+                <ul class="info-list">
+                    <li><i class="fas fa-check"></i> Заказчики: ознакомьтесь с перечнем решений (краткие аннотации от вендоров) и подготовьте уточняющие вопросы по своим задачам.</li>
+                    <li><i class="fas fa-check"></i> Вендоры: финализируйте демо-презентацию под регламент 5+5 минут. Пройдите техрепетицию 17 июня.</li>
+                    <li><i class="fas fa-check"></i> На регистрации получите бейдж, маршрутный лист (для заказчиков) или номер стола (для вендоров).</li>
+                </ul>
+            </div>
+            <div>
+                <h3><i class="fas fa-chart-line"></i> После сессии</h3>
+                <ul class="info-list">
+                    <li><i class="fas fa-upload"></i> Все 10 решений появятся с оценками, контактами и видеозаписями.</li>
+                    <li><i class="fas fa-envelope"></i> Заказчики смогут напрямую связаться с понравившимися вендорами для пилотных внедрений.</li>
+                    <li><i class="fas fa-newspaper"></i> Итоговый рейтинг и рекомендации будут направлены всем участникам.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Контакты и ссылки -->
+<div class="container section fade-up">
+    <h2>Полезные ссылки и контакты</h2>
+    <div class="card-grid">
+        <div class="card">
+            <i class="fab fa-wpforms"></i> 
+            <strong>Чат участников</strong><br>
+            Макс-канал для оперативных объявлений - 
+            <a href="https://max.ru/join/v7XFV-ztHrMfmQfhbCKupw5YyIu6wqRdnfvZ5zH8p0w" class="chat-link" target="_blank" rel="noopener noreferrer">ссылка на чат</a>
+        </div>
+        <div class="card">
+            <i class="fas fa-globe"></i> 
+            <strong>Экосистема решений</strong><br>
+            Каталог проверенных технологий ДЗЗ, БАС и ИИ для природоохранной деятельности.
+        </div>
+        <div class="card">
+            <i class="fas fa-headset"></i> 
+            <strong>Техподдержка в день форума</strong><br>
+            Стойка организаторов в зале «Трансформер».
+        </div>
+    </div>
+    <div class="badge" style="margin-top: 28px;"><i class="fas-regular fa-clock"></i> Онлайн-трансляция для удалённых участников: ссылка придёт на почту за 1 день.</div>
+</div>
+
+<footer>
+    <div class="container">
+        <i class="fas fa-tree" style="font-size: 1.6rem; opacity: 0.7;"></i>
+        <p>Организационный комитет ИТ-Форума со странами БРИКС и ШОС · 2026, Ханты-Мансийск</p>
+        <p style="font-size: 0.8rem;">Экспертная сессия «Применение ДЗЗ, БАС и ИИ в природоохранной деятельности» - интерактивная биржа решений под практические задачи заказчиков</p>
+    </div>
+</footer>
+
+<script>
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => observer.observe(el));
+    document.querySelectorAll('.card, .timeline-item, .hero-content').forEach(el => {
+        if(!el.classList.contains('fade-up')) {
+            el.classList.add('fade-up');
+            observer.observe(el);
+        }
+    });
+    window.addEventListener('load', () => {
+        fadeElements.forEach(el => {
+            if(el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
+        });
+    });
+</script>
+</body>
+</html>
